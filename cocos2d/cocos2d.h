@@ -126,7 +126,9 @@
 #import "CCPhysicsShape.h"
 
 // Sound
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 #import "OALSimpleAudio.h"
+#endif
 
 // Retiring
 #import "CCAnimation.h" // put this back for v3.4 because it's still in use, and would otherwise be unavailable to Swift

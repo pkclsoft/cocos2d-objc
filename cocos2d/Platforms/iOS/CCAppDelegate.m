@@ -33,7 +33,9 @@
 #import "CCScheduler.h"
 #import "CCGLView.h"
 
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 #import "OALSimpleAudio.h"
+#endif
 
 #if __CC_METAL_SUPPORTED_AND_ENABLED
 #import "CCMetalView.h"
@@ -187,8 +189,9 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 	
 	CCDirectorIOS* director = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 	director.wantsFullScreenLayout = YES;
-	
+#endif
 	// Display FSP and SPF
 	[director setDisplayStats:[config[CCSetupShowDebugStats] boolValue]];
 	
@@ -212,9 +215,11 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 	// You can change this setting at any time.
 	[CCTexture setDefaultAlphaPixelFormat:CCTexturePixelFormat_RGBA8888];
     
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
     // Initialise OpenAL
     [OALSimpleAudio sharedInstance];
-	
+#endif
+    
 	// Create a Navigation Controller with the Director
 	navController_ = [[CCNavigationController alloc] initWithRootViewController:director];
 	navController_.navigationBarHidden = YES;
@@ -276,6 +281,7 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 // iOS8 hack around orientation bug
 -(void)forceOrientation
 {
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 #if __CC_PLATFORM_IOS && defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     if([navController_.screenOrientation isEqual:CCScreenOrientationAll])
     {
@@ -289,6 +295,7 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
     {
         [[UIApplication sharedApplication] setStatusBarOrientation:UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight];
     }
+#endif
 #endif
 }
 

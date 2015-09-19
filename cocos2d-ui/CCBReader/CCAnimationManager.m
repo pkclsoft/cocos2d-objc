@@ -29,7 +29,9 @@
 #import "CCBSequenceProperty.h"
 #import "CCBReader.h"
 #import "CCBKeyframe.h"
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 #import "OALSimpleAudio.h"
+#endif
 #import <objc/runtime.h>
 
 #import "CCDirector_Private.h"
@@ -463,6 +465,7 @@ static NSInteger ccbAnimationManagerID = 0;
     return [CCActionSequence actionWithArray:actions];
 }
 
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 - (id)actionForSoundChannel:(CCBSequenceProperty*) channel {
     
     float lastKeyframeTime = 0;
@@ -489,6 +492,7 @@ static NSInteger ccbAnimationManagerID = 0;
     
     return [CCActionSequence actionWithArray:actions];
 }
+#endif
 
 - (void)runAnimationsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration {
     
@@ -566,6 +570,7 @@ static NSInteger ccbAnimationManagerID = 0;
     [completeAction startWithTarget:self.rootNode];
     [_currentActions addObject:completeAction];
     
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
     // Playback callbacks and sounds
     if (seq.callbackChannel) {
         // Build sound actions for channel
@@ -586,7 +591,7 @@ static NSInteger ccbAnimationManagerID = 0;
             [_currentActions addObject:action];
         }
     }
-
+#endif
 }
 
 - (void)sequenceCompleted {

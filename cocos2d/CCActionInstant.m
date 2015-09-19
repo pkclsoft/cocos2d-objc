@@ -30,8 +30,9 @@
 #import "CCNode.h"
 #import "CCSprite.h"
 #import <objc/message.h>
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 #import "OALSimpleAudio.h"
-
+#endif
 //
 // InstantAction
 //
@@ -363,6 +364,7 @@
 @end
 
 
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 @implementation CCActionSoundEffect
 
 + (id)actionWithSoundFile:(NSString*)f pitch:(float)pi pan:(float) pa gain:(float)ga
@@ -396,5 +398,5 @@
 }
 
 @end
-
+#endif
 

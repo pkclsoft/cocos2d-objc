@@ -186,6 +186,9 @@ static char * glExtensions;
 {
 	// TODO: This method really needs to go very away in v4
 	
+#if defined(__TV_OS_VERSION_MAX_ALLOWED)
+    return CCDeviceiPadRetinaDisplay;
+#else
 #if __CC_PLATFORM_ANDROID
     
     AndroidDisplayMetrics *metrics = [[AndroidDisplayMetrics alloc] init];
@@ -246,6 +249,7 @@ static char * glExtensions;
 	
 	// This is what it used to do before, but it seems quite wrong...
 	return -1;
+#endif
 }
 
 #pragma mark OpenGL getters

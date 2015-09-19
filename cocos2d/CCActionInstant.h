@@ -365,6 +365,7 @@
 
 @end
 
+#if !defined(__TV_OS_VERSION_MAX_ALLOWED)
 /**
  This actions plays a sound effect through OALSimpleAudio. To play back music use a CCActionCallBlock or CCActionCallFunc
  so that you can use the playBg method of OALSimpleAudio.
@@ -407,3 +408,5 @@
 -(id) initWithSoundFile:(NSString*)file pitch:(float)pitch pan:(float) pan gain:(float)gain;
 
 @end
+#endif
+
